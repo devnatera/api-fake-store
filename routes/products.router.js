@@ -24,25 +24,31 @@ router.get('/filter', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-    id,
-    name: 'Product 2',
-    price: 2000
-  })
+  if (id === '999') {
+    res.status(404).json({
+      message: 'Not Found'
+    });
+  } else {
+    res.status(200).json({
+      id,
+      name: 'Product 2',
+      price: 2000
+    });
+  }
 });
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.json({
+  res.status(201).json({
     message: 'Created',
     data: body,
-  })
+  });
 });
 
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
+  res.status(200).json({
     message: 'Updated',
     data: body,
     id,
@@ -51,7 +57,7 @@ router.patch('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
+  res.status(200).json({
     message: 'Deleted',
     id,
   })
