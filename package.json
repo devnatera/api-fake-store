@@ -1,5 +1,5 @@
 {
-  "name": "my-store",
+  "name": "api-fake-store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "start": "node index.js",
     "lint": "eslint"
   },
-  "keywords": [],
+  "keywords": ["express", "joi", "faker", "boom"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -24,5 +24,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "joi": "^17.9.2"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
