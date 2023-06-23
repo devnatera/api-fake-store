@@ -1,28 +1,27 @@
 const boom = require('@hapi/boom');
 
-const sequelize = require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
 class UserService {
 
-    constructor() { }
+  constructor() { }
 
-    async create(data) {
-        return data;
-    }
+  async create(data) {
+    return data;
+  }
 
-    async find() {
-        const query = "SELECT '1' AS DATA";
-        const [data] = await sequelize.query(query);
-        return data;
-    }
+  async find() {
+    const data = await models.User.findAll();
+    return data;
+  }
 
-    async findOne(id) {
-        return { id };
-    }
+  async findOne(id) {
+    return { id };
+  }
 
-    async update(id, changes) {
-        return { id, changes };
-    }
+  async update(id, changes) {
+    return { id, changes };
+  }
 }
 
 module.exports = UserService;
