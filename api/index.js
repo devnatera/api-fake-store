@@ -12,7 +12,7 @@ app.use(express.json());
 const whitelist = ['http://localhost:8000'];
 const options = {
   origin: (origin, callback) => {
-    if (whitelist.includes(origin || !origin)) {
+    if (whitelist.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('No permitido'));
@@ -21,11 +21,11 @@ const options = {
 }
 app.use(cors(options));
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('Hola mi server en express');
 });
 
-app.get('/nueva-ruta', (req, res) => {
+app.get('/api/nueva-ruta', (req, res) => {
   res.send('Hola, soy una nueva ruta');
 });
 
