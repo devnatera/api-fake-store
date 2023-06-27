@@ -7,10 +7,13 @@ class ProductService {
 
   constructor() { }
 
-  async find() {
-    const products = await models.Product.findAll({
-      include: ['category']
-    });
+  async find({ limit, offset }) {
+    const options = { include: ['category'] };
+    if (limit && offset) {
+      options.offset = offset;
+      options.limit = limit;
+    }
+    const products = await models.Product.findAll(options);
     return products;
   }
 
