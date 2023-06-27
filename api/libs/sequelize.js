@@ -6,12 +6,23 @@ const setupModels = require('../database/models');
 
 const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
-const URI = `${config.dbDriver}://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
-const sequelize = new Sequelize(URI, {
+const URI = (config.databaseUrl)
+  ? config.databaseUrl
+  : `${config.dbDriver}://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+
+const options = {
   dialect: config.dbDriver,
-  logging: true,
-});
+  logging: config.isProd ? false : true,
+}
+
+if (config.isProd) {
+  options.dialectOptions = {
+    ssl: { rejectUnauthorized: false }
+  }
+}
+
+const sequelize = new Sequelize(URI, options);
 
 setupModels(sequelize);
 
