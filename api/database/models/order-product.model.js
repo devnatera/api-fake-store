@@ -19,8 +19,6 @@ const OrderProductSchema = {
       model: ORDER_TABLE,
       key: 'id'
     },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
   },
   productId: {
     field: 'product_id',
@@ -30,8 +28,6 @@ const OrderProductSchema = {
       model: PRODUCT_TABLE,
       key: 'id'
     },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL'
   },
   amount: {
     allowNull: false,
@@ -48,8 +44,7 @@ const OrderProductSchema = {
 class OrderProduct extends Model {
 
   static associate(models) {
-    // this.belongsTo(models.Order, { as: 'order' });
-    // this.belongsTo(models.Product, { as: 'product' });
+    //
   }
 
   static config(sequelize) {
